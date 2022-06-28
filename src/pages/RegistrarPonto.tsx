@@ -10,7 +10,7 @@ export default function RegistrarPonto() {
 
   const formik = useFormik({
     initialValues: {
-      matricula: searchParams.get("matricula") ?? 0,
+      matricula: searchParams.get("matricula") ?? "",
       password: "",
     },
     onSubmit: (values) => {

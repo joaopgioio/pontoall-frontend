@@ -13,11 +13,16 @@ export default function CadastrarFuncionario() {
     initialValues: {
       nome: "",
       materia: "portugues",
-      matricula: 0,
+      matricula: "",
       password: "",
     },
     onSubmit: (values) => {
-      postProfessor(values as IProfessorCreateDto)
+      postProfessor({
+        nome: values.nome,
+        materia: values.materia,
+        matricula: Number(values.matricula),
+        password: values.password,
+      } as IProfessorCreateDto)
         .then((res) => res.data)
         .then((data) => console.log(data));
 
@@ -52,7 +57,7 @@ export default function CadastrarFuncionario() {
             id="matricula"
             name="matricula"
             onChange={formik.handleChange}
-            value={formik.values.matricula}
+            value={formik.values.matricula ?? ""}
           ></Form.Control>
         </Form.Group>
         <Form.Group className="mb-3">
